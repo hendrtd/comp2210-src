@@ -12,10 +12,10 @@
  */
 public class BitOps {
 
-    /** Number of bits in the int type. */
-    private static final int NUM_BITS = 32;
+    /** Number of bits in the int type, excluding the sign. */
+    private static final int NUM_BITS = 31;
 
-    /** Number of digits in Integer.MAX_VALUE */
+    /** Number of digits in Integer.MAX_VALUE, excluding the negative sign */
     private static final int NUM_DIGITS = 10;
 
     /**
