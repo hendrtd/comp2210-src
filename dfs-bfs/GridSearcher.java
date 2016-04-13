@@ -1,14 +1,18 @@
 import java.util.Arrays;
+import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.LinkedList;
 
 /**
  * GridSearcher.java
  * Provides sample implementations of breadth-first and depth-first
- * search in the context of a two-dimensional grid.
+ * search in the context of a two-dimensional grid. Reference descriptions
+ * of these two search methods are available at:
+ *
+ * https://en.wikipedia.org/wiki/Depth-first_search
+ * https://en.wikipedia.org/wiki/Breadth-first_search
  *
  * @author Dean Hendrix (dh@auburn.edu)
- * @version 2016-03-15
+ * @version 2016-04-12
  *
  */
 public class GridSearcher {
@@ -115,7 +119,7 @@ public class GridSearcher {
     * Initializes all to unvisited and launches a breadth-first
     * search in the current grid starting at position (x,y).
     */
-   public void breadthFirstQueue(int x, int y) {
+   public void breadthFirst(int x, int y) {
       markAllUnvisited();
       Position start = new Position(x, y);
       if (isValid(start)) {
@@ -125,10 +129,13 @@ public class GridSearcher {
    }
 
    /**
-    * Search the current grid using breadth-first search.
+    * Search the current grid using breadth-first search. This algorithm is
+    * almost identical to the depth-first search below. The only differences
+    * are the use of a queue v. stack and the order in which positions are
+    * processed.
     */
    private void bfs(Position start) {
-      Deque<Position> queue = new LinkedList<Position>();
+      Deque<Position> queue = new ArrayDeque<>();
       visit(start);
       process(start);
       queue.addLast(start);
@@ -148,21 +155,23 @@ public class GridSearcher {
     * Initializes all to unvisited and launches a depth-first
     * search in the current grid starting at position (x,y).
     */
-   public void depthFirstStack(int x, int y) {
+   public void depthFirstA(int x, int y) {
       markAllUnvisited();
       Position start = new Position(x, y);
       if (isValid(start)) {
          order = 1;
-         dfs(start);
+         dfsIterativeA(start);
       }
    }
 
    /**
-    * Perform a depth-first traversal on grid starting from
-    * the given position. This dfs is iterative and uses a stack.
+    * Perform a depth-first traversal on grid starting from the given
+    * position. This algorithm is almost identical to the breadth-first search
+    * above. The only differences are the use of a queue v. stack and the
+    * order in which positions are processed.
     */
-   private void dfs(Position start) {
-      Deque<Position> stack = new LinkedList<Position>();
+   private void dfsIterativeA(Position start) {
+      Deque<Position> stack = new ArrayDeque<>();
       visit(start);
       stack.addFirst(start);
       while (!stack.isEmpty()) {
@@ -187,25 +196,25 @@ public class GridSearcher {
     * Initializes all to unvisited and launches a depth-first
     * search in the current grid starting at position (x,y).
     */
-   public void depthFirstIterative(int x, int y) {
+   public void depthFirstB(int x, int y) {
       markAllUnvisited();
       Position start = new Position(x, y);
       if (isValid(start)) {
          order = 1;
-         dfsi(start);
+         dfsIterativeB(start);
       }
    }
 
-   // models the global stack implicitly used by the recursive version
-   private Deque<Position> stack = new LinkedList<Position>();
 
    /**
-    * Perform a depth-first search/traversal on the current
-    * grid starting from the given position. This implementation
-    * is iterative and relies on a global stack to maintain
-    * the positions on the current depth-first path.
+    * Perform a depth-first search/traversal on the current grid starting from
+    * the given position. This algorithm is the one most closely associated
+    * with "depth-first search with backtracking" as used in most writings.
+    * This algorithm exhibits exactly the same search ordering as the
+    * recursive versions below.
     */
-   private void dfsi(Position start) {
+   private void dfsIterativeB(Position start) {
+      Deque<Position> stack = new ArrayDeque<>();
       visit(start);
       process(start);
       stack.addFirst(start);
@@ -237,25 +246,28 @@ public class GridSearcher {
     * Initializes all to unvisited and launches a depth-first
     * search in the current grid starting at position (x,y).
     */
-   public void depthFirstRecursive(int x, int y) {
+   public void depthFirstC1(int x, int y) {
       markAllUnvisited();
       Position start = new Position(x, y);
       if (isValid(start)) {
          order = 1;
-         dfsr1(start);
+         dfsRecursive1(start);
       }
    }
 
    /**
-    * Perform a depth-first traversal on grid starting from
-    * the given position.
+    * Perform a depth-first traversal on grid starting from the given
+    * position. This algorithm is the one most closely associated with
+    * "depth-first search with backtracking" as used in most writings. This
+    * algorithm exhibits exactly the same search ordering as the iterative
+    * version above.
     */
-   private void dfsr1(Position position) {
+   private void dfsRecursive1(Position position) {
       visit(position);
       process(position);
       for (Position neighbor : position.neighbors()) {
          if (!isVisited(neighbor)) {
-            dfsr1(neighbor);
+            dfsRecursive1(neighbor);
          }
       }
    }
@@ -264,27 +276,30 @@ public class GridSearcher {
     * Initializes all to unvisited and launches a depth-first
     * search in the current grid starting at position (x,y).
     */
-   public void depthFirstRecursive2(int x, int y) {
+   public void depthFirstC2(int x, int y) {
       markAllUnvisited();
       Position start = new Position(x, y);
       if (isValid(start)) {
          order = 1;
-         dfsr2(start);
+         dfsRecursive2(start);
       }
    }
 
    /**
-    * Perform a depth-first traversal on grid starting from
-    * the given position.
+    * Perform a depth-first traversal on grid starting from the given
+    * position. This algorithm is the one most closely associated with
+    * "depth-first search with backtracking" as used in most writings. This
+    * algorithm exhibits exactly the same search ordering as the iterative
+    * version above.
     */
-   private void dfsr2(Position position) {
+   private void dfsRecursive2(Position position) {
       if (isVisited(position)) {
          return;
       }
       visit(position);
       process(position);
       for (Position neighbor : position.neighbors()) {
-         dfsr2(neighbor);
+         dfsRecursive2(neighbor);
       }
    }
 
