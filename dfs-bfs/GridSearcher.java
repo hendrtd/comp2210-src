@@ -12,7 +12,7 @@ import java.util.Deque;
  * https://en.wikipedia.org/wiki/Breadth-first_search
  *
  * @author Dean Hendrix (dh@auburn.edu)
- * @version 2016-04-12
+ * @version 2016-14
  *
  */
 public class GridSearcher {
@@ -186,6 +186,62 @@ public class GridSearcher {
       }
    }
 
+
+   //////////////////////////////////////
+   // Breadth-first search with memory //
+   //////////////////////////////////////
+
+   /**
+    * Initializes all to unvisited and launches a breadth-first
+    * search in the current grid starting at position (x,y).
+    */
+   public void breadthFirstMemory(int x, int y) {
+      markAllUnvisited();
+      Position start = new Position(x, y);
+      if (isValid(start)) {
+         order = 1;
+         bfsMemory(start);
+      }
+   }
+
+   /**
+    * Search the current grid using breadth-first search. This algorithm is
+    * identical to the breadth-first search above, except for the addition of
+    * memory. Positions are added to the queue wrapped in a node, which is linked
+    * to a node containing the position's immediately preceeding neighbor; that is,
+    * the neighbor responsible for having this position added to the queue.
+    */
+   private void bfsMemory(Position start) {
+      Deque<Node> queue = new ArrayDeque<>();
+      visit(start);
+      process(start);
+      queue.addLast(new Node(start, null));
+      while (!queue.isEmpty()) {
+         Node n = queue.removeFirst();
+         Position position = n.position;
+         for (Position neighbor : position.neighbors()) {
+            if (!isVisited(neighbor)) {
+               visit(neighbor);
+               process(neighbor);
+               queue.addLast(new Node(neighbor, n));
+            }
+         }
+      }
+   }
+
+
+   /**
+    * Constructs a node for linking positions together.
+    */
+   private class Node {
+      Position position;
+      Node predecessor;
+
+      public Node(Position p, Node pred) {
+         position = p;
+         predecessor = pred;
+      }
+   }
 
    ////////////////////////////////////////////////////////////////////////////////////
    // Depth-first - depth-first pair; one is recursive, one iterative; same ordering //

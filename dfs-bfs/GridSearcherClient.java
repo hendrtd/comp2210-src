@@ -29,26 +29,37 @@ public class GridSearcherClient {
       int y = 0;
 
       System.out.println("breadthFirst");
+      searcher.fillGrid(0);
       searcher.breadthFirst(x, y);
       System.out.println(searcher.gridToString());
       System.out.println();
 
+      System.out.println("breadthFirstMemory");
+      searcher.fillGrid(0);
+      searcher.breadthFirstMemory(x, y);
+      System.out.println(searcher.gridToString());
+      System.out.println();
+
       System.out.println("depthFirstA");
+      searcher.fillGrid(0);
       searcher.depthFirstA(x, y);
       System.out.println(searcher.gridToString());
       System.out.println();
 
       System.out.println("depthFirstB");
+      searcher.fillGrid(0);
       searcher.depthFirstB(x, y);
       System.out.println(searcher.gridToString());
       System.out.println();
 
       System.out.println("depthFirstC1");
+      searcher.fillGrid(0);
       searcher.depthFirstC1(x, y);
       System.out.println(searcher.gridToString());
       System.out.println();
 
       System.out.println("depthFirstC2");
+      searcher.fillGrid(0);
       searcher.depthFirstC2(x, y);
       System.out.println(searcher.gridToString());
       System.out.println();
@@ -57,26 +68,31 @@ public class GridSearcherClient {
       y = OPEN_GRID[0].length / 2;
 
       System.out.println("breadthFirst");
+      searcher.fillGrid(0);
       searcher.breadthFirst(x, y);
       System.out.println(searcher.gridToString());
       System.out.println();
 
       System.out.println("depthFirstA");
+      searcher.fillGrid(0);
       searcher.depthFirstA(x, y);
       System.out.println(searcher.gridToString());
       System.out.println();
 
       System.out.println("depthFirstB");
+      searcher.fillGrid(0);
       searcher.depthFirstB(x, y);
       System.out.println(searcher.gridToString());
       System.out.println();
 
       System.out.println("depthFirstC1");
+      searcher.fillGrid(0);
       searcher.depthFirstC1(x, y);
       System.out.println(searcher.gridToString());
       System.out.println();
 
       System.out.println("depthFirstC2");
+      searcher.fillGrid(0);
       searcher.depthFirstC2(x, y);
       System.out.println(searcher.gridToString());
       System.out.println();
