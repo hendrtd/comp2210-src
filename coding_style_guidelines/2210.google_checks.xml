@@ -83,16 +83,19 @@
         </module>
  -->
 
-        <!--
-        Allow '}' to be alone on a line in call circumstances.
-        This is needed because of the CSD in jGRASP.
-        Check this for all token types, not just those originally included.
-        dh 2015-08-14 -->
+<!--
+        The following would require the right curly to be alone on a line in each
+        multi-block statement. Note that generating the CSD in jGRASP will force
+        this layout.
+        I've disabled the right curly check to allow both Google style (same) and
+        jGRASP default behavior (alone).
+
+        @dh 2016-08-30
         <module name="RightCurly">
             <property name="option" value="alone"/>
             <property name="tokens" value=" LITERAL_TRY, LITERAL_CATCH, LITERAL_FINALLY, LITERAL_IF, LITERAL_ELSE, CLASS_DEF, METHOD_DEF, CTOR_DEF, LITERAL_FOR, LITERAL_WHILE, LITERAL_DO, STATIC_INIT, INSTANCE_INIT"/>
         </module>
-
+ -->
 
 
         <module name="WhitespaceAround">
