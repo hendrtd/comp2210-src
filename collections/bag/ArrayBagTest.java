@@ -248,12 +248,14 @@ public class ArrayBagTest {
       int doubleSize = capacity;
       for (int i = 1; i <= 32; i++) {
          bag.add(i);
+         elements = (Object[]) array.get(bag);
          capacity = elements.length;
-         assertEquals("Incorrect size. ", i, bag.size());
-         assertEquals("Incorrect capacity. ", capacity, doubleSize);
+         assertEquals("Incorrect size for i = " + i + ". ", i, bag.size());
+         assertEquals("Incorrect capacity for i = " + i + ". ", doubleSize, capacity);
          if (i == capacity) {
             doubleSize *= 2;
          }
+         // System.out.println(" i = " + i + ", size = " + bag.size() + ", capacity = " + capacity);
       }
    }
 
