@@ -1,10 +1,11 @@
 import java.util.Iterator;
 
 /**
- * ArrayBag.java Implements bag (multiset) behavior. Duplicates and nulls are
- * allowed and no specific order is guaranteed. Method signatures are
- * compatable with the corresponding methods of java.util.Collection, but the
- * semantics of some methods may differ.
+ * ArrayBag.java
+ * Implements bag (multiset) behavior. Duplicates are allowed and no specific
+ * order is guaranteed. Method signatures are compatable with the
+ * corresponding methods of java.util.Collection, but the semantics of some
+ * methods may differ.
  *
  * This implementation is based on a resizeable array data structure, with an
  * initial size of 1. The array is doubled in size each time it reaches

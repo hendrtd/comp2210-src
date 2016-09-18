@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import java.lang.reflect.Field;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -71,12 +73,6 @@ public class ArrayBagTest {
          assertEquals(true, abag.contains(i));
          assertEquals(false, abag.isEmpty());
       }
-
-   }
-
-   /** Tests add when the bag is full. */
-   @Ignore
-   public void add_whenFull() {
 
    }
 
@@ -222,6 +218,43 @@ public class ArrayBagTest {
       Integer[] elemArray = elements.toArray(new Integer[]{});
       Arrays.sort(elemArray);
       assertArrayEquals(values, elemArray);
+   }
+
+
+   /////////////////////////////////////////
+   // Structural tests for add and remove //
+   /////////////////////////////////////////
+
+   @Test
+   public void addArrayGrowth() throws Exception {
+      Bag<Integer> bag = new ArrayBag<>();
+      Field array = bag.getClass().getDeclaredField("elements");
+      array.setAccessible(true);
+      Object[] elements = (Object[]) array.get(bag);
+
+      // The elements array starts out at capacity 1.
+      // Does not double on an add that *makes* it full.
+      // Doubles only on adds that can't be satisfied without
+      // more room.
+      // Make N consequtive adds (add[i = 1..32]). On each
+      // iteration, the following invariants must hold.
+      //    i == bag.size()
+      //    capacity == doubleSize (the next size at which doubling will happen)
+      // When i == capacity at the *beginning* of an add request, doubling occurs
+      // and doubleSize is increased.
+      assertEquals("Incorrect initial size. ", 0, bag.size());
+      int capacity = 1;
+      assertEquals("Incorrect initial capacity. ", capacity, elements.length);
+      int doubleSize = capacity;
+      for (int i = 1; i <= 32; i++) {
+         bag.add(i);
+         capacity = elements.length;
+         assertEquals("Incorrect size. ", i, bag.size());
+         assertEquals("Incorrect capacity. ", capacity, doubleSize);
+         if (i == capacity) {
+            doubleSize *= 2;
+         }
+      }
    }
 
 }

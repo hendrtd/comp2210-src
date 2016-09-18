@@ -2,10 +2,10 @@ import java.util.Iterator;
 
 /**
  * Bag.java
- * Specifies bag (multiset) behavior. Duplicates and nulls are allowed
- * and no specific order is guaranteed. Method signatures are compatable with
- * the corresponding methods of java.util.Collection, but the semantics of some
- * methods may differ.
+ * Specifies bag (multiset) behavior. Duplicates are allowed and no specific
+ * order is guaranteed. Method signatures are compatable with the corresponding
+ * methods of java.util.Collection, but the semantics of some methods may
+ * differ.
  *
  * @author Dean Hendrix (dh@auburn.edu)
  * @version 2016-08-23
