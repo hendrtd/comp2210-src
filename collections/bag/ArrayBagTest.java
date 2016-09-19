@@ -236,7 +236,7 @@ public class ArrayBagTest {
       // Does not double on an add that *makes* it full.
       // Doubles only on adds that can't be satisfied without
       // more room.
-      // Make N consequtive adds (add[i = 1..32]). On each
+      // Make N consecutive adds (add(i = [1..N]). On each
       // iteration, the following invariants must hold.
       //    i == bag.size()
       //    capacity == doubleSize (the next size at which doubling will happen)
@@ -256,6 +256,40 @@ public class ArrayBagTest {
             doubleSize *= 2;
          }
          // System.out.println(" i = " + i + ", size = " + bag.size() + ", capacity = " + capacity);
+      }
+   }
+
+   @Test
+   public void removeArrayShrink() throws Exception {
+      Bag<Integer> bag = new ArrayBag<>();
+      Field array = bag.getClass().getDeclaredField("elements");
+      array.setAccessible(true);
+      Object[] elements = (Object[]) array.get(bag);
+
+      // The elements array shrinks by half after a remove that
+      // causes size() to be strictly less than elements.length * .25.
+      // Once the array capacity grows to four, it will never shrink below four.
+      // Starting with a bag of size N and elements [1..N], make  N
+      // consecutive removes (remove(i = [N..1])). On each iteration,
+      // the following invariants must hold after a remove.
+      //    i == bag.size() + 1
+      //    capacity == halfSize * 2 (the next size at which halving will occur)
+      // When i == halfSize / 2 at the *end* of a remove, halving occurs
+      // and halfSize is decreased.
+      for (int i = 1; i <= 32; i++) {
+         bag.add(i);
+      }
+      int capacity = 32;
+      int halfSize = 16;
+      for (int i = 32; i > 0; i--) {
+         bag.remove(i);
+         elements = (Object[]) array.get(bag);
+         capacity = elements.length;
+         if ((i > 1) && (i == halfSize / 2)) {
+            halfSize /= 2;
+         }
+         assertEquals("Incorrect size for i = " + i + ". ", i, bag.size() + 1);
+         assertEquals("Incorrect capacity for i = " + i + ". ", capacity, halfSize * 2);
       }
    }
 
