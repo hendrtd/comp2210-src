@@ -152,7 +152,9 @@ public class ArrayBagTest {
       for (Integer i : bag) {
          elements.add(i);
       }
-      assertArrayEquals(values, elements.toArray());
+      Integer[] elementsArray = elements.<Integer>toArray(new Integer[]{});
+      Arrays.<Integer>sort(elementsArray);
+      assertArrayEquals(values, elementsArray);
 
       bag = new ArrayBag<>();
       values = new Integer[]{1,2};
@@ -163,7 +165,9 @@ public class ArrayBagTest {
       for (Integer i : bag) {
          elements.add(i);
       }
-      assertArrayEquals(values, elements.toArray());
+      elementsArray = elements.<Integer>toArray(new Integer[]{});
+      Arrays.<Integer>sort(elementsArray);
+      assertArrayEquals(values, elementsArray);
 
       bag = new ArrayBag<>();
       values = new Integer[]{1,2,3};
@@ -174,7 +178,9 @@ public class ArrayBagTest {
       for (Integer i : bag) {
          elements.add(i);
       }
-      assertArrayEquals(values, elements.toArray());
+      elementsArray = elements.<Integer>toArray(new Integer[]{});
+      Arrays.<Integer>sort(elementsArray);
+      assertArrayEquals(values, elementsArray);
 
       bag = new ArrayBag<>();
       values = new Integer[]{1,2,3,4,5,6,7,8,9,10};
@@ -185,7 +191,9 @@ public class ArrayBagTest {
       for (Integer i : bag) {
          elements.add(i);
       }
-      assertArrayEquals(values, elements.toArray());
+      elementsArray = elements.<Integer>toArray(new Integer[]{});
+      Arrays.<Integer>sort(elementsArray);
+      assertArrayEquals(values, elementsArray);
    }
 
    /** Tests iterator interactions with core methods. */
@@ -215,9 +223,9 @@ public class ArrayBagTest {
       for (Integer i : bag) {
          elements.add(i);
       }
-      Integer[] elemArray = elements.toArray(new Integer[]{});
-      Arrays.sort(elemArray);
-      assertArrayEquals(values, elemArray);
+      Integer[] elementsArray = elements.<Integer>toArray(new Integer[]{});
+      Arrays.<Integer>sort(elementsArray);
+      assertArrayEquals(values, elementsArray);
    }
 
 

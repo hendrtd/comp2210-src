@@ -10,10 +10,10 @@
 public class ArrayBagClient {
    /** Drives execution. */
    public static void main(String[] args) {
-      Bag<Integer> abag = new ArrayBag<>();
+      Bag<Integer> bag = new ArrayBag<>();
       for (int i = 0; i < 10; i++) {
-         abag.add(i);
+         bag.add(i);
       }
-      System.out.println(abag);
+      System.out.println(bag);
    }
 }
