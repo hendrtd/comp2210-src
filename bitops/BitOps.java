@@ -7,7 +7,7 @@
  *
  *
  * @author Dean Hendrix (dh@auburn.edu)
- * @version 2016-03-08
+ * @version 2016-09-29
  *
  */
 public class BitOps {
@@ -68,8 +68,9 @@ public class BitOps {
         val2 = 44;
         result = val1 ^ val2;
         result = val2 ^ val1;
+        xorSwap();
 
-        /** bitwise inclusive OR: ^ */
+        /** bitwise inclusive OR: | */
         val1 = 15;
         val2 = 12;
         result = val1 | val2;
@@ -100,6 +101,20 @@ public class BitOps {
             printDecimalAndBinary(value);
             value = value >> 1;
         }
+    }
+
+    /**
+     * Swaps two values using xor (^ - exclusive or) without
+     * using a third temporary variable.
+     */
+    public static void xorSwap() {
+        int val1 = 10;
+        int val2 = 15;
+        System.out.println("val1 = " + val1 + " val2 = " + val2);
+        val1 = val1 ^ val2;
+        val2 = val2 ^ val1;
+        val1 = val1 ^ val2;
+        System.out.println("val1 = " + val1 + " val2 = " + val2);
     }
 
     /**
