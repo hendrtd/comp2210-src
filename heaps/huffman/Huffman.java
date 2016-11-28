@@ -13,9 +13,12 @@ public class Huffman {
 	/** Drives execution. */
 	public static void main(String[] args) {
 		// String text = "go go gophers";
-		String text = "aaaaaaaaaabbbbbbbccccccdddde";
-		CodeTreeNode codeTree = getHuffmanTree(text);
+		// String text = "aaaaaaaaaabbbbbbbccccccdddde";
+		String text = "I slit the sheet, the sheet I slit, and on the slitted sheet I sit";
+		Map<String, Integer> charMap = charCount(text.toLowerCase());
+		CodeTreeNode codeTree = getHuffmanTree(text.toLowerCase());
 		Map<String, String> codeTable = getCodeTable(codeTree);
+		System.out.println(charMap);
 		System.out.println(codeTable);
 	}
 
