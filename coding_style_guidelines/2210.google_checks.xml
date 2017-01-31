@@ -135,8 +135,24 @@
             <message key="name.invalidPattern"
              value="Type name ''{0}'' must match pattern ''{1}''."/>
         </module>
+
+
+<!-- 
+        Original:
         <module name="MemberName">
             <property name="format" value="^[a-z][a-z0-9][a-zA-Z0-9]*$"/>
+            <message key="name.invalidPattern"
+             value="Member name ''{0}'' must match pattern ''{1}''."/>
+        </module>
+
+ -->
+
+        <!--         
+        Allow single char member names. This is a bit of a hack for
+        the Point class with fields x and y.
+        dh, 2017-01-31-->        
+        <module name="MemberName">
+            <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
             <message key="name.invalidPattern"
              value="Member name ''{0}'' must match pattern ''{1}''."/>
         </module>
