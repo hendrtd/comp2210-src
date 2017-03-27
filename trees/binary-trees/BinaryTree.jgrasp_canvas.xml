@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Canvas xmlns="http://www.jgrasp.org">
+  <Language>Java</Language>
+  <ShowTypes>false</ShowTypes>
+  <Version>2</Version>
+  <Grid>
+    <Snap>true</Snap>
+    <Show>false</Show>
+  </Grid>
+  <Scope id="1">
+    <Name>toInorderString</Name>
+    <Signature>()Ljava/lang/String;</Signature>
+    <DeclaringType>BinaryTree</DeclaringType>
+    <Depth>1</Depth>
+  </Scope>
+  <Scope id="2">
+    <Name>inorderString</Name>
+    <Signature>(LBinaryTree$Node;Ljava/lang/StringBuilder;)V</Signature>
+    <DeclaringType>BinaryTree</DeclaringType>
+    <Depth>2</Depth>
+  </Scope>
+  <Scope id="0">
+    <Name>main</Name>
+    <Signature>([Ljava/lang/String;)V</Signature>
+    <DeclaringType>BinaryTree</DeclaringType>
+    <Depth>0</Depth>
+  </Scope>
+  <Frame>
+    <Bounds>
+      <AutoSize>true</AutoSize>
+      <X>30</X>
+      <Y>140</Y>
+      <W>334</W>
+      <H>325</H>
+    </Bounds>
+    <Viewer>
+      <ScopeID>0</ScopeID>
+      <Expression>`local BinaryTree` t</Expression>
+      <ViewerClass>java__lang__Object_LinkedView</ViewerClass>
+    </Viewer>
+  </Frame>
+  <Frame>
+    <Bounds>
+      <AutoSize>true</AutoSize>
+      <X>40</X>
+      <Y>50</Y>
+      <W>95</W>
+      <H>43</H>
+    </Bounds>
+    <Viewer>
+      <ScopeID>1</ScopeID>
+      <Expression>`local java.lang.StringBuilder` s</Expression>
+      <ViewerClass>java__lang__StringBuilder_FormattedView</ViewerClass>
+    </Viewer>
+  </Frame>
+  <Frame>
+    <Bounds>
+      <AutoSize>true</AutoSize>
+      <X>390</X>
+      <Y>140</Y>
+      <W>218</W>
+      <H>233</H>
+    </Bounds>
+    <Viewer>
+      <ScopeID>2</ScopeID>
+      <Expression>`local BinaryTree$Node` n</Expression>
+      <ViewerClass>java__lang__Object_LinkedView</ViewerClass>
+      <ViewerData>
+        <ViewData>
+          <Simple>true</Simple>
+        </ViewData>
+      </ViewerData>
+    </Viewer>
+  </Frame>
+  <Size>
+    <W>900</W>
+    <H>714</H>
+  </Size>
+  <ESize>
+    <W>900</W>
+    <H>714</H>
+  </ESize>
+</Canvas>
