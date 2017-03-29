@@ -64,6 +64,9 @@ public class BinaryTree {
     * in preorder.
     */
    String toPreorderString() {
+      if (root == null) {
+         return "";
+      }
       StringBuilder s = new StringBuilder();
       preorderString(root, s);
       s.delete(s.length() - 2, s.length());
@@ -86,6 +89,9 @@ public class BinaryTree {
     * in inorder.
     */
    String toInorderString() {
+      if (root == null) {
+         return "";
+      }
       StringBuilder s = new StringBuilder();
       inorderString(root, s);
       s.delete(s.length() - 2, s.length());
@@ -108,6 +114,9 @@ public class BinaryTree {
     * in postorder.
     */
    String toPostorderString() {
+      if (root == null) {
+         return "";
+      }
       StringBuilder s = new StringBuilder();
       postorderString(root, s);
       s.delete(s.length() - 2, s.length());
@@ -130,6 +139,9 @@ public class BinaryTree {
     * in level order.
     */
    String toLevelorderString() {
+      if (root == null) {
+         return "";
+      }
       StringBuilder s = new StringBuilder();
       levelorderString(root, s);
       s.delete(s.length() - 2, s.length());
