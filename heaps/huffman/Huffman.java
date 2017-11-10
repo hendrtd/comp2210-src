@@ -3,7 +3,6 @@ import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 /**
- * Huffman.java
  * Generates an encoding for a text alphabet based on Huffman's algorithm.
  *
  * @author Dean Hendrix (dh@auburn.edu)
@@ -12,9 +11,10 @@ import java.util.Scanner;
 public class Huffman {
 	/** Drives execution. */
 	public static void main(String[] args) {
-		// String text = "go go gophers";
+        // String text = "go go gophers";
+        // String text = "I slit the sheet, the sheet I slit, and on the slitted sheet I sit";
 		// String text = "aaaaaaaaaabbbbbbbccccccdddde";
-		String text = "I slit the sheet, the sheet I slit, and on the slitted sheet I sit";
+        String text = "bodda getta, bodda getta, bodda getta, bah";
 		Map<String, Integer> charMap = charCount(text.toLowerCase());
 		CodeTreeNode codeTree = getHuffmanTree(text.toLowerCase());
 		Map<String, String> codeTable = getCodeTable(codeTree);
@@ -56,21 +56,21 @@ public class Huffman {
 	/** Returns (char,code) map defined by tree. */
 	static Map<String, String> getCodeTable(CodeTreeNode tree) {
 		Map<String, String> table = new HashMap<>();
-		buildTableInorder(tree, table, new StringBuilder());
+		buildTablePreorder(tree, table, new StringBuilder());
 		return table;
 	}
 
-	/** Builds the code table via inorder traversal. */
-	static void buildTableInorder(CodeTreeNode node, Map<String, String> map, StringBuilder code) {
-		if (isLeaf(node)) {
-			map.put(node.ch, code.toString());
-			return;
-		}
-		buildTableInorder(node.left, map, code.append("0"));
-		code.delete(code.length() - 1, code.length());
-		buildTableInorder(node.right, map, code.append("1"));
-		code.delete(code.length() - 1, code.length());
-	}
+    /** Builds the code table via preorder traversal. */
+    static void buildTablePreorder(CodeTreeNode node, Map<String, String> map, StringBuilder code) {
+        if (isLeaf(node)) {
+            map.put(node.ch, code.toString());
+            return;
+        }
+        buildTablePreorder(node.left, map, code.append("0"));
+        code.delete(code.length() - 1, code.length());
+        buildTablePreorder(node.right, map, code.append("1"));
+        code.delete(code.length() - 1, code.length());
+    }
 
 	/** Returns true if n is a leaf node. */
 	static boolean isLeaf(CodeTreeNode n) {
