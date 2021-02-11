@@ -1,0 +1,336 @@
+{\rtf1\ansi\uc0 \deff1{\fonttbl{\f1\fmodern\fprq1\fcharset0 Consolas;}}{\colortbl;\red224\green234\blue238;\red00\green00\blue00;\red191\green03\blue03;\red176\green126\blue00;\red131\green129\blue131;\red131\green129\blue131;\red255\green00\blue255;\red00\green130\blue00;\red129\green129\blue00;\red85\green85\blue85;\red00\green00\blue00;\red00\green87\blue174;\red00\green00\blue00;\red00\green87\blue174;\red00\green00\blue00;\red01\green01\blue129;}
+\paperw11905\paperh16837\margl1134\margr1134\margt1134\margb1134\sectd\plain\f1\fs20
+\pard \cbpat1{{\cf2{}}{\cf13{\b import\b0 }} {\cf2{java}}{\cf11{.}}{\cf2{util}}{\cf11{.}}{\cf2{Iterator}}{\cf11{;}}}\par\pard
+\cbpat1{{\cf2{}}{\cf13{\b import\b0 }} {\cf2{java}}{\cf11{.}}{\cf2{util}}{\cf11{.}}{\cf2{NoSuchElementException}}{\cf11{;}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf6{\i /**\i0 }}}\par\pard
+\cbpat1{{\cf6{\i  * ArrayIndexedList.java\i0 }}}\par\pard
+\cbpat1{{\cf6{\i  * Implements an indexed list using an array as the underlying data structure.\i0 }}}\par\pard
+\cbpat1{{\cf6{\i  *\i0 }}}\par\pard
+\cbpat1{{\cf6{\i  * @author Dean Hendrix (dh@auburn.edu)\i0 }}}\par\pard
+\cbpat1{{\cf6{\i  * @version {2}{0}{1}{6}-{0}{9}-{3}{0}\i0 }}}\par\pard
+\cbpat1{{\cf6{\i  */\i0 }}{\cf2{}}}\par\pard
+\cbpat1{{\cf13{\b public class\b0 }} {\cf2{ArrayIndexedList}}{\cf11{<}}{\cf2{T}}{\cf11{>}} {\cf2{}}{\cf13{\b implements\b0 }} {\cf2{IndexedList}}{\cf11{<}}{\cf2{T}}{\cf11{> \{}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{   {\cf5{\i // default capacity of the array\i0 }}}\par\pard
+\cbpat1{{\cf2{}}   {\cf13{\b private static final\b0 }} {\cf2{}}{\cf14{int}} {\cf2{DEFAULT_CAPACITY}} {\cf11{=}} {\cf2{}}{\cf4{{1}}}{\cf2{}}{\cf11{;}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{   {\cf5{\i // stores all elements of the list\i0 }}}\par\pard
+\cbpat1{{\cf2{}}   {\cf13{\b private\b0 }} {\cf2{T}}{\cf11{[]}} {\cf2{elements}}{\cf11{;}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{   {\cf5{\i // the number of elements in the list\i0 }}}\par\pard
+\cbpat1{{\cf2{}}   {\cf14{int}} {\cf2{size}}{\cf11{;}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{   {\cf6{\i /** Creates a sorted list with the default capacity. */\i0 }}{\cf2{}}}\par\pard
+\cbpat1{   {\cf13{\b public\b0 }} {\cf2{}}{\cf16{ArrayIndexedList}}{\cf2{}}{\cf11{() \{}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf13{\b this\b0 }}{\cf2{}}{\cf11{(}}{\cf2{DEFAULT_CAPACITY}}{\cf11{);}}}\par\pard
+\cbpat1{{\cf2{}}   {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{   {\cf6{\i /** Creates a sorted list with the specified capacity. */\i0 }}{\cf2{}}}\par\pard
+\cbpat1{   {\cf15{\b @SuppressWarnings\b0 }}{\cf2{}}{\cf11{(}}{\cf2{}}{\cf3{"unchecked"}}{\cf2{}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{}}   {\cf13{\b public\b0 }} {\cf2{}}{\cf16{ArrayIndexedList}}{\cf2{}}{\cf11{(}}{\cf2{}}{\cf14{int}} {\cf2{capacity}}{\cf11{) \{}}}\par\pard
+\cbpat1{{\cf2{      elements}} {\cf11{= (}}{\cf2{T}}{\cf11{[])}} {\cf2{}}{\cf13{\b new\b0 }} {\cf2{Object}}{\cf11{[}}{\cf2{capacity}}{\cf11{];}}}\par\pard
+\cbpat1{{\cf2{      size}} {\cf11{=}} {\cf2{}}{\cf4{{0}}}{\cf2{}}{\cf11{;}}}\par\pard
+\cbpat1{{\cf2{}}   {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{}\par\pard
+\cbpat1{   {\cf5{\i ////////////////////////////\i0 }}}\par\pard
+\cbpat1{{\cf2{}}   {\cf5{\i // Accessor style methods //\i0 }}}\par\pard
+\cbpat1{{\cf2{}}   {\cf5{\i ////////////////////////////\i0 }}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{   {\cf6{\i /** Returns the first element in this list. */\i0 }}{\cf2{}}}\par\pard
+\cbpat1{   {\cf15{\b @Override\b0 }}}\par\pard
+\cbpat1{{\cf2{}}   {\cf13{\b public\b0 }} {\cf2{T}} {\cf16{first}}{\cf2{}}{\cf11{() \{}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf13{\b if\b0 }} {\cf2{}}{\cf11{(}}{\cf2{}}{\cf16{isEmpty}}{\cf2{}}{\cf11{()) \{}}}\par\pard
+\cbpat1{{\cf2{}}         {\cf13{\b throw new\b0 }} {\cf2{}}{\cf16{NoSuchElementException}}{\cf2{}}{\cf11{();}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf13{\b return\b0 }} {\cf2{elements}}{\cf11{[}}{\cf2{}}{\cf4{{0}}}{\cf2{}}{\cf11{];}}}\par\pard
+\cbpat1{{\cf2{}}   {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{   {\cf6{\i /** Returns the last element in this list. */\i0 }}{\cf2{}}}\par\pard
+\cbpat1{   {\cf15{\b @Override\b0 }}}\par\pard
+\cbpat1{{\cf2{}}   {\cf13{\b public\b0 }} {\cf2{T}} {\cf16{last}}{\cf2{}}{\cf11{() \{}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf13{\b if\b0 }} {\cf2{}}{\cf11{(}}{\cf2{}}{\cf16{isEmpty}}{\cf2{}}{\cf11{()) \{}}}\par\pard
+\cbpat1{{\cf2{}}         {\cf13{\b throw new\b0 }} {\cf2{}}{\cf16{NoSuchElementException}}{\cf2{}}{\cf11{();}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf13{\b return\b0 }} {\cf2{elements}}{\cf11{[}}{\cf2{size}}{\cf11{];}}}\par\pard
+\cbpat1{{\cf2{}}   {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{   {\cf6{\i /** Returns true if this list contains element, false otherwise. */\i0 }}{\cf2{}}}\par\pard
+\cbpat1{   {\cf15{\b @Override\b0 }}}\par\pard
+\cbpat1{{\cf2{}}   {\cf13{\b public\b0 }} {\cf2{}}{\cf14{boolean}} {\cf2{}}{\cf16{contains}}{\cf2{}}{\cf11{(}}{\cf2{T element}}{\cf11{) \{}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf13{\b return\b0 }} {\cf2{}}{\cf16{locate}}{\cf2{}}{\cf11{(}}{\cf2{element}}{\cf11{) >=}} {\cf2{}}{\cf4{{0}}}{\cf2{}}{\cf11{;}}}\par\pard
+\cbpat1{{\cf2{}}   {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{   {\cf6{\i /**\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     * Return the index of the specified element in the\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     * array or -{1} if not present.\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     */\i0 }}{\cf2{}}}\par\pard
+\cbpat1{   {\cf13{\b private\b0 }} {\cf2{}}{\cf14{int}} {\cf2{}}{\cf16{locate}}{\cf2{}}{\cf11{(}}{\cf2{T element}}{\cf11{) \{}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf13{\b for\b0 }} {\cf2{}}{\cf11{(}}{\cf2{}}{\cf14{int}} {\cf2{i}} {\cf11{=}} {\cf2{}}{\cf4{{0}}}{\cf2{}}{\cf11{;}} {\cf2{i}} {\cf11{<}} {\cf2{size}}{\cf11{;}} {\cf2{i}}{\cf11{++) \{}}}\par\pard
+\cbpat1{{\cf2{}}         {\cf13{\b if\b0 }} {\cf2{}}{\cf11{(}}{\cf2{elements}}{\cf11{[}}{\cf2{i}}{\cf11{].}}{\cf2{}}{\cf16{equals}}{\cf2{}}{\cf11{(}}{\cf2{element}}{\cf11{)) \{}}}\par\pard
+\cbpat1{{\cf2{}}            {\cf13{\b return\b0 }} {\cf2{i}}{\cf11{;}}}\par\pard
+\cbpat1{{\cf2{}}         {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf13{\b return\b0 }} {\cf2{}}{\cf11{-}}{\cf2{}}{\cf4{{1}}}{\cf2{}}{\cf11{;}}}\par\pard
+\cbpat1{{\cf2{}}   {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{   {\cf6{\i /** Returns the number of elements in this list. */\i0 }}{\cf2{}}}\par\pard
+\cbpat1{   {\cf15{\b @Override\b0 }}}\par\pard
+\cbpat1{{\cf2{}}   {\cf13{\b public\b0 }} {\cf2{}}{\cf14{int}} {\cf2{}}{\cf16{size}}{\cf2{}}{\cf11{() \{}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf13{\b return\b0 }} {\cf2{size}}{\cf11{;}}}\par\pard
+\cbpat1{{\cf2{}}   {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{   {\cf6{\i /** Returns true if this list is empty, false otherwise. */\i0 }}{\cf2{}}}\par\pard
+\cbpat1{   {\cf15{\b @Override\b0 }}}\par\pard
+\cbpat1{{\cf2{}}   {\cf13{\b public\b0 }} {\cf2{}}{\cf14{boolean}} {\cf2{}}{\cf16{isEmpty}}{\cf2{}}{\cf11{() \{}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf13{\b return\b0 }} {\cf2{size}} {\cf11{==}} {\cf2{}}{\cf4{{0}}}{\cf2{}}{\cf11{;}}}\par\pard
+\cbpat1{{\cf2{}}   {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{   {\cf6{\i /**\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     * Returns true if number of elements in this list is the same\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     * as the capacity of the array.\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     */\i0 }}{\cf2{}}}\par\pard
+\cbpat1{   {\cf13{\b private\b0 }} {\cf2{}}{\cf14{boolean}} {\cf2{}}{\cf16{isFull}}{\cf2{}}{\cf11{() \{}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf13{\b return\b0 }} {\cf2{size}} {\cf11{==}} {\cf2{elements}}{\cf11{.}}{\cf2{length}}{\cf11{;}}}\par\pard
+\cbpat1{{\cf2{}}   {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{   {\cf6{\i /**\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     * Returns true if the number of elements in this list is strictly less than\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     * {2}{5}% of the capacity of the elements array.\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     */\i0 }}{\cf2{}}}\par\pard
+\cbpat1{   {\cf13{\b private\b0 }} {\cf2{}}{\cf14{boolean}} {\cf2{}}{\cf16{isSparse}}{\cf2{}}{\cf11{() \{}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf13{\b return\b0 }} {\cf2{}}{\cf11{(}}{\cf2{size}} {\cf11{>}} {\cf2{}}{\cf4{{0}}}{\cf2{}}{\cf11{) && (}}{\cf2{size}} {\cf11{<}} {\cf2{elements}}{\cf11{.}}{\cf2{length}} {\cf11{/}} {\cf2{}}{\cf4{{4}}}{\cf2{}}{\cf11{);}}}\par\pard
+\cbpat1{{\cf2{}}   {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{   {\cf6{\i /**\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     * Return true if the specified index is a valid index for this list,\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     * false otherwise.\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     */\i0 }}{\cf2{}}}\par\pard
+\cbpat1{   {\cf13{\b private\b0 }} {\cf2{}}{\cf14{boolean}} {\cf2{}}{\cf16{validIndex}}{\cf2{}}{\cf11{(}}{\cf2{}}{\cf14{int}} {\cf2{index}}{\cf11{) \{}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf13{\b return\b0 }} {\cf2{}}{\cf11{(}}{\cf2{index}} {\cf11{>=}} {\cf2{}}{\cf4{{0}}}{\cf2{}}{\cf11{) && (}}{\cf2{index}} {\cf11{<}} {\cf2{size}}{\cf11{);}}}\par\pard
+\cbpat1{{\cf2{}}   {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{   {\cf6{\i /**\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     * Returns the element at the specified position in the list.\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     */\i0 }}{\cf2{}}}\par\pard
+\cbpat1{   {\cf15{\b @Override\b0 }}}\par\pard
+\cbpat1{{\cf2{}}   {\cf13{\b public\b0 }} {\cf2{T}} {\cf16{get}}{\cf2{}}{\cf11{(}}{\cf2{}}{\cf14{int}} {\cf2{index}}{\cf11{) \{}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf13{\b if\b0 }} {\cf2{}}{\cf11{(!}}{\cf2{}}{\cf16{validIndex}}{\cf2{}}{\cf11{(}}{\cf2{index}}{\cf11{)) \{}}}\par\pard
+\cbpat1{{\cf2{}}         {\cf13{\b throw new\b0 }} {\cf2{}}{\cf16{IndexOutOfBoundsException}}{\cf2{}}{\cf11{();}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf13{\b return\b0 }} {\cf2{elements}}{\cf11{[}}{\cf2{index}}{\cf11{];}}}\par\pard
+\cbpat1{{\cf2{}}   {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{   {\cf6{\i /**\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     * Returns the index of the first occurrence of the specified element in this list,\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     * or -{1} if if this list does not contain the specified element.\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     */\i0 }}{\cf2{}}}\par\pard
+\cbpat1{   {\cf15{\b @Override\b0 }}}\par\pard
+\cbpat1{{\cf2{}}   {\cf13{\b public\b0 }} {\cf2{}}{\cf14{int}} {\cf2{}}{\cf16{indexOf}}{\cf2{}}{\cf11{(}}{\cf2{T element}}{\cf11{) \{}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf13{\b return\b0 }} {\cf2{}}{\cf16{locate}}{\cf2{}}{\cf11{(}}{\cf2{element}}{\cf11{);}}}\par\pard
+\cbpat1{{\cf2{}}   {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{   {\cf6{\i /**\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     * Returns a string representation of this list.\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     */\i0 }}{\cf2{}}}\par\pard
+\cbpat1{   {\cf15{\b @Override\b0 }}}\par\pard
+\cbpat1{{\cf2{}}   {\cf13{\b public\b0 }} {\cf2{String}} {\cf16{toString}}{\cf2{}}{\cf11{() \{}}}\par\pard
+\cbpat1{{\cf2{      StringBuilder sb}} {\cf11{=}} {\cf2{}}{\cf13{\b new\b0 }} {\cf2{}}{\cf16{StringBuilder}}{\cf2{}}{\cf11{();}}}\par\pard
+\cbpat1{{\cf2{      sb}}{\cf11{.}}{\cf2{}}{\cf16{append}}{\cf2{}}{\cf11{(}}{\cf2{}}{\cf3{"["}}{\cf2{}}{\cf11{);}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf13{\b for\b0 }} {\cf2{}}{\cf11{(}}{\cf2{}}{\cf14{int}} {\cf2{i}} {\cf11{=}} {\cf2{}}{\cf4{{0}}}{\cf2{}}{\cf11{;}} {\cf2{i}} {\cf11{<}} {\cf2{size}}{\cf11{;}} {\cf2{i}}{\cf11{++) \{}}}\par\pard
+\cbpat1{{\cf2{         sb}}{\cf11{.}}{\cf2{}}{\cf16{append}}{\cf2{}}{\cf11{(}}{\cf2{elements}}{\cf11{[}}{\cf2{i}}{\cf11{] +}} {\cf2{}}{\cf3{", "}}{\cf2{}}{\cf11{);}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{      sb}}{\cf11{.}}{\cf2{}}{\cf16{delete}}{\cf2{}}{\cf11{(}}{\cf2{sb}}{\cf11{.}}{\cf2{}}{\cf16{length}}{\cf2{}}{\cf11{() -}} {\cf2{}}{\cf4{{2}}}{\cf2{}}{\cf11{,}} {\cf2{sb}}{\cf11{.}}{\cf2{}}{\cf16{length}}{\cf2{}}{\cf11{());}}}\par\pard
+\cbpat1{{\cf2{      sb}}{\cf11{.}}{\cf2{}}{\cf16{append}}{\cf2{}}{\cf11{(}}{\cf2{}}{\cf3{"]"}}{\cf2{}}{\cf11{);}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf13{\b return\b0 }} {\cf2{sb}}{\cf11{.}}{\cf2{}}{\cf16{toString}}{\cf2{}}{\cf11{();}}}\par\pard
+\cbpat1{{\cf2{}}   {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{   {\cf6{\i /** Provides an iterator over the elements in this list. */\i0 }}{\cf2{}}}\par\pard
+\cbpat1{   {\cf15{\b @Override\b0 }}}\par\pard
+\cbpat1{{\cf2{}}   {\cf13{\b public\b0 }} {\cf2{Iterator}}{\cf11{<}}{\cf2{T}}{\cf11{>}} {\cf2{}}{\cf16{iterator}}{\cf2{}}{\cf11{() \{}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf13{\b return new\b0 }} {\cf2{}}{\cf16{ArrayIterator}}{\cf2{}}{\cf11{();}}}\par\pard
+\cbpat1{{\cf2{}}   {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{   {\cf6{\i /**\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     * Provides iteration behavior over the elements array. The values are\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     * returned in the order in which they appear in the array, from index {0} to\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     * index size - {1}.\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     */\i0 }}{\cf2{}}}\par\pard
+\cbpat1{   {\cf13{\b private class\b0 }} {\cf2{ArrayIterator}} {\cf13{\b implements\b0 }} {\cf2{Iterator}}{\cf11{<}}{\cf2{T}}{\cf11{> \{}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf14{int}} {\cf2{current}} {\cf11{=}} {\cf2{}}{\cf4{{0}}}{\cf2{}}{\cf11{;}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{      {\cf13{\b public\b0 }} {\cf2{}}{\cf14{boolean}} {\cf2{}}{\cf16{hasNext}}{\cf2{}}{\cf11{() \{}}}\par\pard
+\cbpat1{{\cf2{}}         {\cf13{\b return\b0 }} {\cf2{current}} {\cf11{<}} {\cf2{size}}{\cf11{;}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{      {\cf13{\b public\b0 }} {\cf2{T}} {\cf16{next}}{\cf2{}}{\cf11{() \{}}}\par\pard
+\cbpat1{{\cf2{}}         {\cf13{\b if\b0 }} {\cf2{}}{\cf11{(!}}{\cf2{}}{\cf16{hasNext}}{\cf2{}}{\cf11{()) \{}}}\par\pard
+\cbpat1{{\cf2{}}            {\cf13{\b throw new\b0 }} {\cf2{}}{\cf16{NoSuchElementException}}{\cf2{}}{\cf11{();}}}\par\pard
+\cbpat1{{\cf2{}}         {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{}}         {\cf13{\b return\b0 }} {\cf2{elements}}{\cf11{[}}{\cf2{current}}{\cf11{++];}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{      {\cf13{\b public\b0 }} {\cf2{}}{\cf14{void}} {\cf2{}}{\cf16{remove}}{\cf2{}}{\cf11{() \{}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{      {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{}}   {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{}\par\pard
+\cbpat1{   {\cf5{\i ////////////////////////////////\i0 }}}\par\pard
+\cbpat1{{\cf2{}}   {\cf5{\i // Add methods, plus a setter //\i0 }}}\par\pard
+\cbpat1{{\cf2{}}   {\cf5{\i ////////////////////////////////\i0 }}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{   {\cf6{\i /**\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     * Appends the element to the end of this list.\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     * Returns true if element was added to the list, false otherwise.\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     */\i0 }}{\cf2{}}}\par\pard
+\cbpat1{   {\cf15{\b @Override\b0 }}}\par\pard
+\cbpat1{{\cf2{}}   {\cf13{\b public\b0 }} {\cf2{}}{\cf14{boolean}} {\cf2{}}{\cf16{add}}{\cf2{}}{\cf11{(}}{\cf2{T element}}{\cf11{) \{}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf13{\b return\b0 }} {\cf2{}}{\cf16{add}}{\cf2{}}{\cf11{(}}{\cf2{size}}{\cf11{,}} {\cf2{element}}{\cf11{);}}}\par\pard
+\cbpat1{{\cf2{}}   {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{   {\cf6{\i /**\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     * Inserts the element at the specified position in this list.\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     * Returns true if element was added to the list, false otherwise.\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     */\i0 }}{\cf2{}}}\par\pard
+\cbpat1{   {\cf15{\b @Override\b0 }}}\par\pard
+\cbpat1{{\cf2{}}   {\cf13{\b public\b0 }} {\cf2{}}{\cf14{boolean}} {\cf2{}}{\cf16{add}}{\cf2{}}{\cf11{(}}{\cf2{}}{\cf14{int}} {\cf2{index}}{\cf11{,}} {\cf2{T element}}{\cf11{) \{}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf13{\b if\b0 }} {\cf2{}}{\cf11{(}}{\cf2{index}} {\cf11{==}} {\cf2{size}}{\cf11{) \{}}}\par\pard
+\cbpat1{{\cf2{}}         {\cf13{\b return\b0 }} {\cf2{}}{\cf16{add}}{\cf2{}}{\cf11{(}}{\cf2{element}}{\cf11{);}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf13{\b if\b0 }} {\cf2{}}{\cf11{(!}}{\cf2{}}{\cf16{validIndex}}{\cf2{}}{\cf11{(}}{\cf2{index}}{\cf11{)) \{}}}\par\pard
+\cbpat1{{\cf2{}}         {\cf13{\b throw new\b0 }} {\cf2{}}{\cf16{IndexOutOfBoundsException}}{\cf2{}}{\cf11{();}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf13{\b if\b0 }} {\cf2{}}{\cf11{(}}{\cf2{}}{\cf16{isFull}}{\cf2{}}{\cf11{()) \{}}}\par\pard
+\cbpat1{{\cf2{}}         {\cf16{resize}}{\cf2{}}{\cf11{(}}{\cf2{size}} {\cf11{*}} {\cf2{}}{\cf4{{2}}}{\cf2{}}{\cf11{);}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf16{shiftRight}}{\cf2{}}{\cf11{(}}{\cf2{index}}{\cf11{);}}}\par\pard
+\cbpat1{{\cf2{      elements}}{\cf11{[}}{\cf2{index}}{\cf11{] =}} {\cf2{element}}{\cf11{;}}}\par\pard
+\cbpat1{{\cf2{      size}}{\cf11{++;}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf13{\b return\b0 }} {\cf2{true}}{\cf11{;}}}\par\pard
+\cbpat1{{\cf2{}}   {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{   {\cf6{\i /**\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     * Replaces the element at the specified position in this list with\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     * the specified element. Returns the element previously at the specified\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     * position.\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     */\i0 }}{\cf2{}}}\par\pard
+\cbpat1{   {\cf15{\b @Override\b0 }}}\par\pard
+\cbpat1{{\cf2{}}   {\cf13{\b public\b0 }} {\cf2{T}} {\cf16{set}}{\cf2{}}{\cf11{(}}{\cf2{}}{\cf14{int}} {\cf2{index}}{\cf11{,}} {\cf2{T element}}{\cf11{) \{}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf13{\b if\b0 }} {\cf2{}}{\cf11{(!}}{\cf2{}}{\cf16{validIndex}}{\cf2{}}{\cf11{(}}{\cf2{index}}{\cf11{)) \{}}}\par\pard
+\cbpat1{{\cf2{}}         {\cf13{\b throw new\b0 }} {\cf2{}}{\cf16{IndexOutOfBoundsException}}{\cf2{}}{\cf11{();}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{      T oldElement}} {\cf11{=}} {\cf2{elements}}{\cf11{[}}{\cf2{index}}{\cf11{];}}}\par\pard
+\cbpat1{{\cf2{      elements}}{\cf11{[}}{\cf2{index}}{\cf11{] =}} {\cf2{element}}{\cf11{;}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf13{\b return\b0 }} {\cf2{oldElement}}{\cf11{;}}}\par\pard
+\cbpat1{{\cf2{}}   {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{}\par\pard
+\cbpat1{   {\cf5{\i ////////////////////\i0 }}}\par\pard
+\cbpat1{{\cf2{}}   {\cf5{\i // Remove methods //\i0 }}}\par\pard
+\cbpat1{{\cf2{}}   {\cf5{\i ////////////////////\i0 }}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{   {\cf6{\i /**\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     * Removes a single instance of element from this list.\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     * Returns true if element was removed, false otherwise.\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     */\i0 }}{\cf2{}}}\par\pard
+\cbpat1{   {\cf15{\b @Override\b0 }}}\par\pard
+\cbpat1{{\cf2{}}   {\cf13{\b public\b0 }} {\cf2{}}{\cf14{boolean}} {\cf2{}}{\cf16{remove}}{\cf2{}}{\cf11{(}}{\cf2{T element}}{\cf11{) \{}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf14{int}} {\cf2{loc}} {\cf11{=}} {\cf2{}}{\cf16{locate}}{\cf2{}}{\cf11{(}}{\cf2{element}}{\cf11{);}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf13{\b if\b0 }} {\cf2{}}{\cf11{(}}{\cf2{loc}} {\cf11{<}} {\cf2{}}{\cf4{{0}}}{\cf2{}}{\cf11{) \{}}}\par\pard
+\cbpat1{{\cf2{}}         {\cf13{\b return\b0 }} {\cf2{false}}{\cf11{;}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf13{\b return\b0 }} {\cf2{}}{\cf16{remove}}{\cf2{}}{\cf11{(}}{\cf2{loc}}{\cf11{) !=}} {\cf2{null}}{\cf11{;}}}\par\pard
+\cbpat1{{\cf2{}}   {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{   {\cf6{\i /**\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     * Removes the element at the specified position in this list, if it exists.\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     */\i0 }}{\cf2{}}}\par\pard
+\cbpat1{   {\cf15{\b @Override\b0 }}}\par\pard
+\cbpat1{{\cf2{}}   {\cf13{\b public\b0 }} {\cf2{T}} {\cf16{remove}}{\cf2{}}{\cf11{(}}{\cf2{}}{\cf14{int}} {\cf2{index}}{\cf11{) \{}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf13{\b if\b0 }} {\cf2{}}{\cf11{(}}{\cf2{index}} {\cf11{==}} {\cf2{size}}{\cf11{) \{}}}\par\pard
+\cbpat1{{\cf2{}}         {\cf13{\b return\b0 }} {\cf2{}}{\cf16{removeLast}}{\cf2{}}{\cf11{();}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf13{\b if\b0 }} {\cf2{}}{\cf11{(!}}{\cf2{}}{\cf16{validIndex}}{\cf2{}}{\cf11{(}}{\cf2{index}}{\cf11{)) \{}}}\par\pard
+\cbpat1{{\cf2{}}         {\cf13{\b throw new\b0 }} {\cf2{}}{\cf16{IndexOutOfBoundsException}}{\cf2{}}{\cf11{();}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf13{\b final\b0 }} {\cf2{T element}} {\cf11{=}} {\cf2{elements}}{\cf11{[}}{\cf2{index}}{\cf11{];}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf16{shiftLeft}}{\cf2{}}{\cf11{(}}{\cf2{index}} {\cf11{+}} {\cf2{}}{\cf4{{1}}}{\cf2{}}{\cf11{);}}}\par\pard
+\cbpat1{{\cf2{      elements}}{\cf11{[--}}{\cf2{size}}{\cf11{] =}} {\cf2{null}}{\cf11{;}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf13{\b if\b0 }} {\cf2{}}{\cf11{(}}{\cf2{}}{\cf16{isSparse}}{\cf2{}}{\cf11{()) \{}}}\par\pard
+\cbpat1{{\cf2{}}         {\cf16{resize}}{\cf2{}}{\cf11{(}}{\cf2{elements}}{\cf11{.}}{\cf2{length}} {\cf11{/}} {\cf2{}}{\cf4{{2}}}{\cf2{}}{\cf11{);}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf13{\b return\b0 }} {\cf2{element}}{\cf11{;}}}\par\pard
+\cbpat1{{\cf2{}}   {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{   {\cf6{\i /**\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     * Removes and returns a reference to the first element in this list.\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     * Returns null if the list is empty.\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     */\i0 }}{\cf2{}}}\par\pard
+\cbpat1{   {\cf15{\b @Override\b0 }}}\par\pard
+\cbpat1{{\cf2{}}   {\cf13{\b public\b0 }} {\cf2{T}} {\cf16{removeFirst}}{\cf2{}}{\cf11{() \{}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf13{\b if\b0 }} {\cf2{}}{\cf11{(}}{\cf2{}}{\cf16{isEmpty}}{\cf2{}}{\cf11{()) \{}}}\par\pard
+\cbpat1{{\cf2{}}         {\cf13{\b throw new\b0 }} {\cf2{}}{\cf16{NoSuchElementException}}{\cf2{}}{\cf11{();}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf13{\b return\b0 }} {\cf2{}}{\cf16{remove}}{\cf2{}}{\cf11{(}}{\cf2{}}{\cf4{{0}}}{\cf2{}}{\cf11{);}}}\par\pard
+\cbpat1{{\cf2{}}   {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{   {\cf6{\i /**\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     * Removes and returns a reference to the last element in this list.\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     * Returns null if the list is empty.\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     */\i0 }}{\cf2{}}}\par\pard
+\cbpat1{   {\cf15{\b @Override\b0 }}}\par\pard
+\cbpat1{{\cf2{}}   {\cf13{\b public\b0 }} {\cf2{T}} {\cf16{removeLast}}{\cf2{}}{\cf11{() \{}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf13{\b if\b0 }} {\cf2{}}{\cf11{(}}{\cf2{}}{\cf16{isEmpty}}{\cf2{}}{\cf11{()) \{}}}\par\pard
+\cbpat1{{\cf2{}}         {\cf13{\b throw new\b0 }} {\cf2{}}{\cf16{NoSuchElementException}}{\cf2{}}{\cf11{();}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf13{\b return\b0 }} {\cf2{}}{\cf16{remove}}{\cf2{}}{\cf11{(}}{\cf2{size}} {\cf11{-}} {\cf2{}}{\cf4{{1}}}{\cf2{}}{\cf11{);}}}\par\pard
+\cbpat1{{\cf2{}}   {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{}\par\pard
+\cbpat1{   {\cf5{\i //////////////////////////////////////////////\i0 }}}\par\pard
+\cbpat1{{\cf2{}}   {\cf5{\i // Utilities used by add and remove methods //\i0 }}}\par\pard
+\cbpat1{{\cf2{}}   {\cf5{\i //////////////////////////////////////////////\i0 }}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{   {\cf6{\i /**\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     * Reassign elements to a new array of capacity newSize with the\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     * current elements of the array copied over.\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     */\i0 }}{\cf2{}}}\par\pard
+\cbpat1{   {\cf13{\b private\b0 }} {\cf2{}}{\cf14{void}} {\cf2{}}{\cf16{resize}}{\cf2{}}{\cf11{(}}{\cf2{}}{\cf14{int}} {\cf2{newSize}}{\cf11{) \{}}}\par\pard
+\cbpat1{{\cf2{      assert newSize}} {\cf11{>}} {\cf2{}}{\cf4{{0}}}{\cf2{}}{\cf11{;}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf15{\b @SuppressWarnings\b0 }}{\cf2{}}{\cf11{(}}{\cf2{}}{\cf3{"unchecked"}}{\cf2{}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{      T}}{\cf11{[]}} {\cf2{newArray}} {\cf11{= (}}{\cf2{T}}{\cf11{[])}} {\cf2{}}{\cf13{\b new\b0 }} {\cf2{Object}}{\cf11{[}}{\cf2{newSize}}{\cf11{];}}}\par\pard
+\cbpat1{{\cf2{      System}}{\cf11{.}}{\cf2{}}{\cf16{arraycopy}}{\cf2{}}{\cf11{(}}{\cf2{elements}}{\cf11{,}} {\cf2{}}{\cf4{{0}}}{\cf2{}}{\cf11{,}} {\cf2{newArray}}{\cf11{,}} {\cf2{}}{\cf4{{0}}}{\cf2{}}{\cf11{,}} {\cf2{size}}{\cf11{);}}}\par\pard
+\cbpat1{{\cf2{      elements}} {\cf11{=}} {\cf2{newArray}}{\cf11{;}}}\par\pard
+\cbpat1{{\cf2{}}   {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{   {\cf6{\i /**\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     * Shifts elements[loc] through elements[size - {1}] to the right\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     * by one position.\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     */\i0 }}{\cf2{}}}\par\pard
+\cbpat1{   {\cf13{\b private\b0 }} {\cf2{}}{\cf14{void}} {\cf2{}}{\cf16{shiftRight}}{\cf2{}}{\cf11{(}}{\cf2{}}{\cf14{int}} {\cf2{loc}}{\cf11{) \{}}}\par\pard
+\cbpat1{{\cf2{      assert size}} {\cf11{<}} {\cf2{elements}}{\cf11{.}}{\cf2{length}}{\cf11{;}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf13{\b for\b0 }} {\cf2{}}{\cf11{(}}{\cf2{}}{\cf14{int}} {\cf2{i}} {\cf11{=}} {\cf2{size}}{\cf11{;}} {\cf2{i}} {\cf11{>}} {\cf2{loc}}{\cf11{;}} {\cf2{i}}{\cf11{--) \{}}}\par\pard
+\cbpat1{{\cf2{         elements}}{\cf11{[}}{\cf2{i}}{\cf11{] =}} {\cf2{elements}}{\cf11{[}}{\cf2{i}} {\cf11{-}} {\cf2{}}{\cf4{{1}}}{\cf2{}}{\cf11{];}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf5{\i // Is the following statement necessary?\i0 }}}\par\pard
+\cbpat1{{\cf2{}}      {\cf5{\i // It causes the method to do more than its name implies.\i0 }}}\par\pard
+\cbpat1{{\cf2{      elements}}{\cf11{[}}{\cf2{loc}}{\cf11{] =}} {\cf2{null}}{\cf11{;}}}\par\pard
+\cbpat1{{\cf2{}}   {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{   {\cf6{\i /**\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     * Shifts elements[loc] through elements[size - {1}] to the left\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     * by one position.\i0 }}}\par\pard
+\cbpat1{{\cf6{\i     */\i0 }}{\cf2{}}}\par\pard
+\cbpat1{   {\cf13{\b private\b0 }} {\cf2{}}{\cf14{void}} {\cf2{}}{\cf16{shiftLeft}}{\cf2{}}{\cf11{(}}{\cf2{}}{\cf14{int}} {\cf2{loc}}{\cf11{) \{}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf13{\b for\b0 }} {\cf2{}}{\cf11{(}}{\cf2{}}{\cf14{int}} {\cf2{i}} {\cf11{=}} {\cf2{loc}}{\cf11{;}} {\cf2{i}} {\cf11{<}} {\cf2{size}}{\cf11{;}} {\cf2{i}}{\cf11{++) \{}}}\par\pard
+\cbpat1{{\cf2{         elements}}{\cf11{[}}{\cf2{i}} {\cf11{-}} {\cf2{}}{\cf4{{1}}}{\cf2{}}{\cf11{] =}} {\cf2{elements}}{\cf11{[}}{\cf2{i}}{\cf11{];}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{}}      {\cf5{\i // Is the following statement necessary?\i0 }}}\par\pard
+\cbpat1{{\cf2{}}      {\cf5{\i // It causes the method to do more than its name implies.\i0 }}}\par\pard
+\cbpat1{{\cf2{      elements}}{\cf11{[}}{\cf2{size}} {\cf11{-}} {\cf2{}}{\cf4{{1}}}{\cf2{}}{\cf11{] =}} {\cf2{null}}{\cf11{;}}}\par\pard
+\cbpat1{{\cf2{}}   {\cf11{\}}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf11{\}}}{\cf2{}}}\par\pard
+\cbpat1{}}

@@ -14,7 +14,8 @@ public class Huffman {
         // String text = "go go gophers";
         // String text = "I slit the sheet, the sheet I slit, and on the slitted sheet I sit";
 		// String text = "aaaaaaaaaabbbbbbbccccccdddde";
-        String text = "bodda getta, bodda getta, bodda getta, bah";
+        // String text = "bodda getta, bodda getta, bodda getta, bah";
+        String text = "she sells sea shells by the sea shore";
 		Map<String, Integer> charMap = charCount(text.toLowerCase());
 		CodeTreeNode codeTree = getHuffmanTree(text.toLowerCase());
 		Map<String, String> codeTable = getCodeTable(codeTree);

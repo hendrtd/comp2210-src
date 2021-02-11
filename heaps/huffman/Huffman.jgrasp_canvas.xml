@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Canvas xmlns="http://www.jgrasp.org">
+  <Language>Java</Language>
+  <ShowTypes>false</ShowTypes>
+  <Version>2</Version>
+  <Grid>
+    <Snap>true</Snap>
+    <Show>false</Show>
+  </Grid>
+  <Scope id="0">
+    <Name>getHuffmanTree</Name>
+    <Signature>(Ljava/lang/String;)LHuffman$CodeTreeNode;</Signature>
+    <DeclaringType>Huffman</DeclaringType>
+    <Depth>1</Depth>
+  </Scope>
+  <Frame>
+    <Bounds>
+      <AutoSize>true</AutoSize>
+      <X>70</X>
+      <Y>160</Y>
+      <W>107</W>
+      <H>226</H>
+    </Bounds>
+    <Viewer>
+      <ScopeID>0</ScopeID>
+      <Expression>`local java.util.Map` charMap</Expression>
+      <ViewerClass>jgrasp_viewers.java__util__Map_ToStringView</ViewerClass>
+    </Viewer>
+  </Frame>
+  <Frame>
+    <Bounds>
+      <AutoSize>false</AutoSize>
+      <X>210</X>
+      <Y>170</Y>
+      <W>794</W>
+      <H>484</H>
+    </Bounds>
+    <PanelSize>
+      <Key>jgrasp_viewers.java__lang__Object_LinkedView0</Key>
+      <Order>4</Order>
+      <W>800</W>
+      <H>523</H>
+    </PanelSize>
+    <Viewer>
+      <ScopeID>0</ScopeID>
+      <Expression>`local java.util.PriorityQueue` heap</Expression>
+      <ViewerClass>jgrasp_viewers.java__lang__Object_LinkedView</ViewerClass>
+      <ViewerData>
+        <StructureData>
+          <Type>BTree</Type>
+          <ArrayElExp>#Integer.valueOf(_index_)</ArrayElExp>
+          <ArraySizeExp>_tree_.queue.length</ArraySizeExp>
+          <ArrayFieldNm>queue</ArrayFieldNm>
+          <WrapperExp>(_tree_.size &gt; 0)?0:-1</WrapperExp>
+          <LeftLnkExp>(_tree_.size &gt;= 2 * _node_ + 1)? 2 * _node_ + 1:-1</LeftLnkExp>
+          <RightLnkExp>(_tree_.size &gt;= 2 * _node_ + 2)? 2 * _node_ + 2:-1</RightLnkExp>
+          <ValueExp>_tree_.queue[_node_]</ValueExp>
+        </StructureData>
+        <ViewData>
+          <Embedded>false</Embedded>
+        </ViewData>
+      </ViewerData>
+    </Viewer>
+  </Frame>
+  <Frame>
+    <Bounds>
+      <AutoSize>true</AutoSize>
+      <X>70</X>
+      <Y>60</Y>
+      <W>368</W>
+      <H>46</H>
+    </Bounds>
+    <Viewer>
+      <ScopeID>0</ScopeID>
+      <Expression>`local java.lang.String` text</Expression>
+      <ViewerClass>jgrasp_viewers.java__lang__String_FormattedView</ViewerClass>
+    </Viewer>
+  </Frame>
+  <Frame>
+    <Bounds>
+      <AutoSize>true</AutoSize>
+      <X>1040</X>
+      <Y>200</Y>
+      <W>106</W>
+      <H>46</H>
+    </Bounds>
+    <Viewer>
+      <ScopeID>0</ScopeID>
+      <Expression>`local Huffman$CodeTreeNode` n1</Expression>
+      <ViewerClass>jgrasp_viewers.java__lang__Object_FormattedToStringView</ViewerClass>
+    </Viewer>
+  </Frame>
+  <Frame>
+    <Bounds>
+      <AutoSize>true</AutoSize>
+      <X>1110</X>
+      <Y>200</Y>
+      <W>106</W>
+      <H>46</H>
+    </Bounds>
+    <Viewer>
+      <ScopeID>0</ScopeID>
+      <Expression>`local Huffman$CodeTreeNode` n2</Expression>
+      <ViewerClass>jgrasp_viewers.java__lang__Object_FormattedToStringView</ViewerClass>
+    </Viewer>
+  </Frame>
+  <Size>
+    <W>1539</W>
+    <H>893</H>
+  </Size>
+  <ESize>
+    <W>1539</W>
+    <H>893</H>
+  </ESize>
+</Canvas>

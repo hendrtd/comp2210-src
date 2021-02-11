@@ -1,0 +1,16 @@
+
+http://www.cs.cornell.edu/courses/cs2112/2014fa/lectures/lecture.html?id=hashtables
+
+https://www.cs.cornell.edu/courses/cs3110/2015sp/lectures/14/lec14.html
+
+http://www.cs.cornell.edu/courses/cs312/2008sp/lectures/lec21.html
+
+http://algs4.cs.princeton.edu/34hash/
+
+https://softwareengineering.stackexchange.com/questions/49550/which-hashing-algorithm-is-best-for-uniqueness-and-speed
+
+http://www.azillionmonkeys.com/qed/hash.html
+
+http://www.partow.net/programming/hashfunctions/index.html
+
+http://www.ietf.org/rfc/rfc4122.txt

@@ -57,6 +57,11 @@ public class BinaryTree {
       System.out.println("Levelorder: " + t.toLevelorderString());
       System.out.println();
       System.out.println("Height of A: " + t.height(t.root));
+
+      for (char ch = 'A'; ch <= 'Z'; ch++) {
+         boolean found = t.search(t.root, new String(ch + ""));
+         System.out.println(ch + ": " + found);
+      }
    }
 
    /**
@@ -176,6 +181,24 @@ public class BinaryTree {
       int leftHeight = height(n.left);
       int rightHeight = height(n.right);
       return 1 + Math.max(leftHeight, rightHeight);
+   }
+
+   /**
+    * Searches the tree for the specified element. Returns true if element is
+    * present, false otherwise.
+    */
+   boolean search(Node n, Object target) {
+      if (n == null) {
+         return false;
+      }
+      if (n.element.equals(target)) {
+         return true;
+      }
+      boolean found = search(n.left, target);
+      if (!found) {
+         found = search(n.right, target);
+      }
+      return found;
    }
 
 
