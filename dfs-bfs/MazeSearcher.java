@@ -12,7 +12,7 @@ import java.util.Deque;
 public class MazeSearcher {
 
     // open and closed markers
-    private static final int OPEN = 0;
+    //private static final int OPEN = 0;
     private static final int CLOSED = -1;
 
     // the maze
@@ -338,7 +338,9 @@ public class MazeSearcher {
         }
         for (Position neighbor : position.neighbors()) {
             if (!isVisited(neighbor)) {
-                return dfsRecursive1(neighbor);
+                if (dfsRecursive1(neighbor)) {
+                    return true;
+                }
             }
         }
         return false;
@@ -375,7 +377,9 @@ public class MazeSearcher {
             return true;
         }
         for (Position neighbor : position.neighbors()) {
-            return dfsRecursive2(neighbor);
+            if (dfsRecursive2(neighbor)) {
+                return true;
+            }
         }
         return false;
     }
@@ -448,7 +452,7 @@ public class MazeSearcher {
     private boolean isValid(Position p) {
         return (p.x >= 0) && (p.x < numRows) && 
                (p.y >= 0) && (p.y < numCols) &&
-               maze[p.x][p.y] == OPEN;
+               maze[p.x][p.y] != CLOSED;
     }
 
     /**
